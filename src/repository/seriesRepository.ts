@@ -4,9 +4,15 @@ async function getSeries() {;
   return prisma.series.findMany();
 }
 
+async function getSerie(id: number) {
+  return prisma.series.findFirst({
+    where: {id},
+  });
+}
+
 async function addSerie(id: number, name: string, idPlatform: number, idGenre: number, status: string, note: string) {
   return prisma.series.create({
-    data: ({id, name,
+    data: ({id,name,
     idPlatform,
     idGenre,
     status,
@@ -14,9 +20,17 @@ async function addSerie(id: number, name: string, idPlatform: number, idGenre: n
   });
 }
 
+async function deleteSerie(id: number) {
+  return prisma.series.delete({
+    where: {id},
+  });
+}
+
 const seriesRepository = {
   getSeries,
-  addSerie
+  addSerie,
+  getSerie,
+  deleteSerie
 }
 
 export default seriesRepository;
