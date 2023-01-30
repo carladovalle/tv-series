@@ -23,10 +23,16 @@ async function deleteSerie(id: number) {
   await seriesRepository.deleteSerie(id);
 }
 
+async function updateSerie(id: number, note: string) {
+  await getSerie(id);
+  await seriesRepository.updateSerie(id, note);
+}
+
 const seriesService = {
   getSeries,
   addSerie,
-  deleteSerie
+  deleteSerie,
+  updateSerie
 }
 
 export default seriesService;

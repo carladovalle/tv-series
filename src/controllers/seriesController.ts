@@ -32,6 +32,19 @@ async function deleteSerie(req: Request, res: Response) {
     res.sendStatus(200);
   } catch (error) {
     return res.send(error.message);
+  }
+}
+
+async function updateSerie(req: Request, res: Response) {
+
+  const serieId = parseInt(req.params.serieId);
+  const { note } = req.body;
+
+  try {
+    await seriesService.updateSerie(serieId, note)
+    res.sendStatus(200);
+  } catch (error) {
+    return res.send(error.message);
 }
 
 }
@@ -39,7 +52,8 @@ async function deleteSerie(req: Request, res: Response) {
 const seriesController = {
   getAllSeries,
   addSerie,
-  deleteSerie
+  deleteSerie,
+  updateSerie
 }
 
 export default seriesController;

@@ -26,11 +26,19 @@ async function deleteSerie(id: number) {
   });
 }
 
+async function updateSerie(id: number, note: string) {
+  return prisma.series.update({
+    where: {id},
+    data: {note}
+  });
+}
+
 const seriesRepository = {
   getSeries,
   addSerie,
   getSerie,
-  deleteSerie
+  deleteSerie,
+  updateSerie
 }
 
 export default seriesRepository;
